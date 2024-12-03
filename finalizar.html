@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+
+    <title>Carrinho de compra</title>
+
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="images/logo.png" type="image/gif" />
+    <link rel="stylesheet" href="css/styleLogin.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        *{
+            padding: 5px;
+        }
+        body{
+            background-color: #1a1b1b;;
+        }
+        #botaofinalizar{
+            color: rgb(255, 255, 255);
+            position: relative;
+            top: -60px;
+            right: -200px;
+            text-decoration: none;
+        }
+        #botaocontcompra{
+            position: relative;
+            left: 350px;
+        }
+
+    </style>
+</head>
+<body>
+    
+<!-- Section: Design Block -->
+<section>
+    <div class="row">
+        <!-- Carrinho -->
+        <div class="col-md-4 mb-4 position-static">
+            <div class="card mb-4">
+                <div class="card-header py-3">
+                    <h5 class="mb-0 text-font">Carrinho</h5>
+                </div>
+                <div class="card-body">
+                    <div id="produtos-carrinho"></div>
+                    <div class="card-footer mt-4">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0 text-muted">
+                                Subtotal
+                                <span id="subtotal">R$ 0,00</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center px-0 fw-bold text-uppercase">
+                                Total a pagar
+                                <span id="total-pagar">R$ 0,00</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formulário de Endereço -->
+        <div class="col-md-8 mb-4">
+            <div class="card mb-4">
+                <div class="card-header py-3">
+                    <h5 class="mb-0 text-font text-uppercase">Endereço de Entrega</h5>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <!-- Campos do Formulário de Endereço -->
+                        <div class="row mb-4">
+                            <div class="col">
+                                <div data-mdb-input-init class="form-outline">
+                                    <input type="text" id="form11Example1" class="form-control" />
+                                    <label class="form-label" for="form11Example1">Nome</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div data-mdb-input-init class="form-outline">
+                                    <input type="text" id="form11Example2" class="form-control" />
+                                    <label class="form-label" for="form11Example2">Sobrenome</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Text input CEP -->
+                        <div data-mdb-input-init class="form-outline mb-4">
+                            <input type="text" id="cep" class="form-control" placeholder="Digite seu CEP" maxlength="8" onblur="buscarEndereco()"/>
+                            <label class="form-label" for="cep">CEP</label>
+                        </div>
+
+                        <!-- Outros campos de endereço -->
+                        <div data-mdb-input-init class="form-outline mb-4">
+                            <input type="text" id="logradouro" class="form-control" />
+                            <label class="form-label" for="logradouro">Logradouro</label>
+                        </div>
+
+                        <div data-mdb-input-init class="form-outline mb-4">
+                            <input type="text" id="bairro" class="form-control" />
+                            <label class="form-label" for="bairro">Bairro</label>
+                        </div>
+
+                        <div data-mdb-input-init class="form-outline mb-4">
+                            <input type="text" id="cidade" class="form-control" />
+                            <label class="form-label" for="cidade">Cidade</label>
+                        </div>
+
+                        <div data-mdb-input-init class="form-outline mb-4">
+                            <input type="text" id="estado" class="form-control" />
+                            <label class="form-label" for="estado">Estado</label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+         
+        <a href="index.html">
+            <button type="button" class="btn btn-primary btn-lg" id="botaocontcompra" >
+                <b>
+                    Continuar comprando
+                </b>    
+            </button>
+        </a>
+        
+        <div class="text-center">
+            <button type="button" class="btn btn-primary btn-lg" id="botaofinalizar">
+                <!-- Chamando a função finalizarCompra() e redirecionando para o index.html -->
+                <a href="index.html" class="text-white" onclick="finalizarCompra()">Finalizar Compra</a>
+            </button>
+        </div>
+    </div>
+
+</section>
+
+<!-- MODAL PEDIDO FEITO -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="loginBox">
+                <h3>Compra Efetuada!</h3>
+                <p id="quantidadeItens">Você comprou <span id="quantidade">0</span> item(s).</p>
+                <div class="modal-footer">
+                    <a href="index.html"><input type="submit" value="Voltar para a loja"></a>
+                    <a href="index.html" onclick="continuarComprando()"><input type="submit" value="Continuar Comprando">continuarComprando</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fim do Modal -->
+
+
+
+<script>
+    // Função para exibir os produtos no carrinho
+    // Variável para controlar o contador de itens no carrinho
+    let contadorCarrinho = 0;
+
+    // Função para adicionar um produto ao carrinho e atualizar o contador
+    function adicionarAoCarrinho(produto) {
+        contadorCarrinho++;
+
+        // Atualiza o número de itens no carrinho
+        document.getElementById("quantidade").innerText = contadorCarrinho;
+
+        // Exemplo de adicionar produto ao carrinho (pode ser ajustado conforme seu código de produto)
+        const carrinho = document.getElementById("produtos-carrinho");
+        const itemProduto = document.createElement("div");
+        itemProduto.innerText = `${produto} - Quantidade: ${contadorCarrinho}`;
+        carrinho.appendChild(itemProduto);
+
+        // Atualizar os valores do subtotal e total
+        atualizarValoresCarrinho();
+    }
+
+    // Função para atualizar os valores do carrinho
+    function atualizarValoresCarrinho() {
+        // Exemplo de cálculo, você pode alterar os valores conforme seu produto
+        const subtotal = contadorCarrinho * 50; // Exemplo de valor por produto
+        const totalPagar = subtotal + 10; // Exemplo de taxa de entrega
+
+        // Atualiza o DOM com o valor do subtotal e total
+        document.getElementById("subtotal").innerText = `R$ ${subtotal.toFixed(2)}`;
+        document.getElementById("total-pagar").innerText = `R$ ${totalPagar.toFixed(2)}`;
+    }
+
+    // Função chamada ao finalizar compra
+    function finalizarCompra() {
+        // Exemplo de lógica para finalizar a compra e exibir o modal com a quantidade
+        document.getElementById("quantidade").innerText = contadorCarrinho;
+        $('#exampleModal').modal('show'); // Exibe o modal de compra realizada
+    }
+
+    // Função para continuar comprando
+    function continuarComprando() {
+        // Simula continuar comprando, você pode redefinir o contador ou alterar a lógica
+        contadorCarrinho = 0;
+        document.getElementById("quantidade").innerText = contadorCarrinho;
+        document.getElementById("produtos-carrinho").innerHTML = ''; // Limpa o carrinho
+        atualizarValoresCarrinho();
+    }
+     // Função para exibir os produtos no carrinho
+     function mostrarCarrinho() {
+        const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+        let produtosHTML = '';
+        let total = 0;
+
+        // Itera sobre os itens do carrinho e os adiciona ao HTML
+        carrinho.forEach(produto => {
+            produtosHTML += `
+                <div class="d-flex justify-content-between align-items-center">
+                    <span>${produto.nome}</span>
+                    <span>${produto.preco}</span>
+                </div>
+            `;
+            total += parseFloat(produto.preco.replace('R$ ', '').replace(',', '.'));
+        });
+
+        // Exibe os produtos no carrinho
+        document.getElementById('produtos-carrinho').innerHTML = produtosHTML;
+
+        // Exibe o subtotal e o total
+        document.getElementById('subtotal').innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
+        document.getElementById('total-pagar').innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
+    }
+
+    // Função para limpar o carrinho
+    function limparCarrinho() {
+        // Limpar a lista de produtos no carrinho
+        document.getElementById("produtos-carrinho").innerHTML = "";
+
+        // Redefinir o subtotal e total a pagar para zero
+        document.getElementById("subtotal").innerText = "R$ 0,00";
+        document.getElementById("total-pagar").innerText = "R$ 0,00";
+
+        // Limpar o localStorage (remover o carrinho salvo)
+        localStorage.removeItem('carrinho');
+    }
+
+    // Função para finalizar a compra, limpar carrinho e exibir modal
+    function finalizarCompra() {
+        limparCarrinho(); // Limpar o carrinho
+        // Exibir o modal de pedido finalizado
+        $('#exampleModal').modal('show');
+    }
+
+   // Função para continuar comprando
+   function continuarComprando() {
+        // Simula continuar comprando, você pode redefinir o contador ou alterar a lógica
+        contadorCarrinho = 0;
+        document.getElementById("quantidade").innerText = contadorCarrinho;
+        document.getElementById("produtos-carrinho").innerHTML = ''; // Limpa o carrinho
+        atualizarValoresCarrinho();
+        window.location.href = "index.html";
+    }
+
+    // Função para adicionar produto ao carrinho
+    function adicionarAoCarrinho(produto) {
+        // Recupera o carrinho do localStorage, ou cria um carrinho vazio
+        let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+
+        // Verifica se o produto já está no carrinho
+        const produtoExistente = carrinho.find(p => p.id === produto.id);
+        if (produtoExistente) {
+            alert("Produto já está no carrinho!");
+        } else {
+            // Adiciona o novo produto
+            carrinho.push(produto);
+            localStorage.setItem('carrinho', JSON.stringify(carrinho)); // Salva no localStorage
+            alert("Produto adicionado ao carrinho!");
+        }
+    }
+
+    // Chama a função quando a página é carregada
+    window.onload = mostrarCarrinho;
+
+    // Função para buscar o endereço via ViaCEP
+    function buscarEndereco() {
+        var cep = document.getElementById("cep").value.replace(/\D/g, ''); // Remove qualquer caracter não numérico
+        if (cep.length == 8) { // Verifica se o CEP tem 8 caracteres
+            var url = `https://viacep.com.br/ws/${cep}/json/`;
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.erro) {
+                        alert("CEP não encontrado.");
+                    } else {
+                        // Preenche os campos com os dados retornados
+                        document.getElementById("logradouro").value = data.logradouro;
+                        document.getElementById("bairro").value = data.bairro;
+                        document.getElementById("cidade").value = data.localidade;
+                        document.getElementById("estado").value = data.uf;
+                    }
+                })
+                .catch(error => {
+                    alert("Erro ao buscar o endereço.");
+                });
+        } else {
+            alert("CEP inválido!");
+        }
+    }
+   
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IRON BODY - O Maior E-commerce de suplementos do Brasil</title>
+  <link rel="stylesheet" href="style.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</head>
+
+<body>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #1a1b1b;
+    }
+  </style>
+  
+  <!-- NavBar --> 
+<nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
+      aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand fs-2 ms-4" href="#">IRON BODY</a>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link fw-bold" aria-current="page" href="#">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fw-bold" aria-current="page" href="#nossos_produtos">Produtos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fw-bold" href="#sobrenos">Sobre</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fw-bold" href="#contato">Contato</a>
+        </li>
+        <!-- Botão Login ou Logout na Navbar -->
+        <li class="nav-item" id="loginLogoutContainer">
+          <a class="btn btn-outline-light fw-bold" href="javascript:void(0);" id="entrar" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
+        </li>
+        <li class="nav-item" id="logoutContainer" style="display: none;">
+          <a class="btn btn-outline-light fw-bold" href="javascript:void(0);" onclick="logout()">Logout</a>
+        </li>
+        <!-- Novo botão "Finalizar Compra" adicionado -->
+        <li class="nav-item">
+          <a href="finalizar.html"><button type="button" class="btn btn-outline-light fw-bold" data-bs-toggle="modal" data-bs-target="#modalCompra">
+            Finalizar Compra
+          </button></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Modal de Login -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginModalLabel">Login</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="loginForm">
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" required>
+          </div>
+          <div class="mb-3">
+            <label for="senha" class="form-label">Senha</label>
+            <input type="password" class="form-control" id="senha" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Entrar</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Mensagem de sucesso -->
+<div id="mensagemConexao" class="alert alert-success" style="display: none;">
+  Você foi conectado com sucesso!
+</div>
+
+
+
+
+ 
+  <!-- CARROUSEL -->
+  <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="9000">
+        <img src="imagens/banner-de-suplementos.webp" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item" data-bs-interval="9000">
+        <img src="imagens/banner2.webp" class="d-block w-100" alt="...">
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <!-- CARDS -->
+
+    <div class="container">
+      <h2 class="text-center pt-5 my-5 fs-1 text-white" id="nossos_produtos">Conheça nossos Produtos</h2>
+
+      <div class="row mt-5 mb-5">
+        <div class="col-12 col-sm-6 col-md-3 mb-sm-0 mt-4">
+          <div class="card">
+            <img src="imagens/whey _novo.webp" alt="">
+            <div class="card-body">
+              <h5 class="card-title text-center fs-5"> <br> Whey Protein <br> Health - 1kg </h5>
+              <p class="card-text text-center text-danger"><b>R$ 89,17</b></p>
+              <a href="finalizar.html" class="btn btn-danger d-flex justify-content-center" id="comprarBtn1" onclick="adicionarCarrinho('Whey Protein Health - 1kg', 'R$ 89,17')">Comprar</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 mt-4">
+          <div class="card">
+            <img src="imagens/whey_max.webp" alt=""><br>
+            <div class="card-body">
+              <h5 class="card-title text-center fs-5"> Whey Protein <br> MAX TITANIUM - 1Kg </h5>
+              <p class="card-text text-center text-danger"><b>R$ 85,50</b></p>
+              <a href="finalizar.html" class="btn btn-danger d-flex justify-content-center" id="comprarBtn2" onclick="adicionarCarrinho('Whey Protein  MAX TITANIUM - 1Kg ', 'R$ 85,50')">Comprar</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 mt-4">
+          <div class="card">
+            <img src="imagens/creatina_max.webp" alt=""><br>
+            <div class="card-body">
+              <h5 class="card-title text-center fs-5">Creatina <br> MAX TITANIUM - 300g</h5>
+              <p class="card-text text-center text-danger"><b>R$ 94,05</b></p>
+              <a href="finalizar.html" class="btn btn-danger d-flex justify-content-center" id="comprarBtn3"  onclick="adicionarCarrinho('Creatina  MAX TITANIUM - 300g', 'R$ 94,05')">Comprar</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 mt-4">
+          <div class="card">
+            <img src="imagens/whey_integral.webp" alt="">
+            <div class="card-body">
+              <h5 class="card-title text-center fs-5"> <br>Whey Protein <br> Integral Medica - 900g</h5>
+              <p class="card-text text-center text-danger"><b>R$ 146,19</b></p>
+              <a href="finalizar.html" class="btn btn-danger d-flex justify-content-center" id="comprarBtn4"  onclick="adicionarCarrinho('Whey Protein  Integral Medica - 900g', 'R$ 146,19')">Comprar</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 mt-4">
+          <div class="card">
+            <img src="imagens/multivitaminico.sparta.webp" alt="">
+            <div class="card-body">
+              <h5 class="card-title text-center fs-5"> <br> Multi-Vitamínico <br> Espartanos - 60g</h5>
+              <p class="card-text text-center text-danger"><b>R$ 26,90</b></p>
+              <a href="finalizar.html" class="btn btn-danger d-flex justify-content-center" id="comprarBtn5" onclick="adicionarCarrinho(' Multi-Vitamínico Espartanos - 60g  ', 'R$ 26,90')">Comprar</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 mt-4">
+          <div class="card">
+            <img src="imagens/barra_cereal.png" alt="">
+            <div class="card-body">
+              <h5 class="card-title text-center fs-5"> Barra de Proteína<br>MAX TITANIUM - 12 Unidades </h5>
+              <p class="card-text text-center text-danger"><b>R$ 77,70</b></p>
+              <a href="finalizar.html" class="btn btn-danger d-flex justify-content-center" id="comprarBtn6"  onclick="adicionarCarrinho('Barra de Proteína MAX TITANIUM - 12 Unidades ', 'R$ 77,70')">Comprar</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 mt-4">
+          <div class="card">
+            <img src="imagens/monster_proteiquer.png" alt="">
+            <div class="card-body">
+              <h5 class="card-title text-center fs-5"> Barra de Proteína <br> PROBIOTICA - 8 Unidades </h5>
+              <p class="card-text text-center text-danger"><b>R$ 90,15</b></p>
+              <a href="finalizar.html" class="btn btn-danger d-flex justify-content-center" id="comprarBtn7" onclick="adicionarCarrinho(' arra de Proteína PROBIOTICA - 8 Unidades  ', 'R$ 90,15')">Comprar</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 mt-4">
+          <div class="card">
+            <img src="imagens/ceatina_integral.png" alt=""><br>
+            <div class="card-body">
+              <h5 class="card-title text-center fs-5">Creatina <br> Integral Medica - 100g</h5>
+              <p class="card-text text-center text-danger"><b>R$ 84,14</b></p>
+              <a href="finalizar.html" class="btn btn-danger d-flex justify-content-center" id="comprarBtn8"  onclick="adicionarCarrinho('Creatina Integral Medica - 100g   ', 'R$ 84,14')">Comprar</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 mt-4">
+          <div class="card"><br>
+            <img src="imagens/coqueteleira.webp" alt="">
+            <div class="card-body">
+              <h5 class="card-title text-center fs-5">Coqueteleira DUX PRO - 800ML</h5>
+              <p class="card-text text-center text-danger"><b>R$ 26,90</b></p>
+              <a href="finalizar.html" class="btn btn-danger d-flex justify-content-center" id="comprarBtn9" onclick="adicionarCarrinho(' Coqueteleira DUX PRO - 800ML ', 'R$ 26,90')">Comprar</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 mt-4">
+          <div class="card">
+            <img src="imagens/termogenico.png" alt="">
+            <div class="card-body">
+              <h5 class="card-title text-center fs-5">Termogênico <br> PROBIOTICA - 120 Uniadades</h5>
+              <p class="card-text text-center text-danger"><b>R$ 100,50</b></p>
+              <a href="finalizar.html" class="btn btn-danger d-flex justify-content-center" id="comprarBtn10"  onclick="adicionarCarrinho('Termogênico PROBIOTICA - 120 Uniadades  ', 'R$ 100,50')">Comprar</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 mt-4">
+          <div class="card">
+            <img src="imagens/pré_treino.jpeg" alt="">
+            <div class="card-body">
+              <h5 class="card-title text-center fs-5"><br>Pré-treino Égide <br> MAX TITANIUM - 300g</h5>
+              <p class="card-text text-center text-danger"><b>R$ 113,43</b></p>
+              <a href="finalizar.html" class="btn btn-danger d-flex justify-content-center" id="comprarBtn11"  onclick="adicionarCarrinho(' Pré-treino Égide MAX TITANIUM - 300g ', 'R$ 113,43')">Comprar</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 mt-4">
+          <div class="card">
+            <img src="imagens/taurine.png" alt=""><br>
+            <div class="card-body">
+              <h5 class="card-title text-center">Taurina <br> Vitafor - 30 Unidades</h5>
+              <p class="card-text text-center text-danger"><b>R$ 85,50</b></p>
+              <a href="finalizar.html" class="btn btn-danger d-flex justify-content-center" id="comprarBtn12"  onclick="adicionarCarrinho('Taurina Vitafor - 30 Unidades', 'R$ 85,50')">Comprar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SOBRE NÓS -->
+     <div class="container ">
+    <h2 class="text-center pt-5 my-5 text-white" id="sobrenos">SOBRE NÓS</h2>
+
+    <div class="card" ">
+      <div class="card-body" id="card_sobre">
+        <p class="card-text" id="textosobre">
+          <br><br>
+          Na Iron Body, nossa missão é fornecer suplementos de alta qualidade que ajudem você a alcançar seus objetivos
+          de saúde e fitness. Fundada por entusiastas do esporte e profissionais de nutrição, entendemos a importância
+          de uma alimentação equilibrada e do suporte adequado para maximizar seu desempenho.
+          <br><br>
+          Acreditamos que cada corpo é único, e é por isso que oferecemos uma ampla gama de produtos, desde proteínas e
+          pré-treinos até vitaminas e minerais, todos escolhidos com cuidado e rigor. Nos comprometemos a utilizar
+          apenas ingredientes de primeira linha e a manter padrões rigorosos de qualidade.
+          <br><br>
+          Nossa equipe está sempre disponível para ajudar você a escolher o suplemento certo para suas necessidades.
+          Junte-se à família Iron Body e transforme sua jornada de saúde e bem-estar conosco!
+        </p>
+        <br>
+      </div>
+    </div>
+    <p class="pt-4 fs-4 text-start text-white">
+    </div>
+      <!-- contato -->
+      <br><br><br>
+    <div class="container">
+      <h2 class="text-center pb-5 my-5 text-white text-uppercase" id="contato">Entre Em Contato Conosco</h2>
+
+      <form>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label text-white fw-bold fs-5">Email</label>
+          <input type="email" class="form-control" id="emailuser" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+          <div class="form-floating">
+            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+            <label for="floatingTextarea">Insira um comentário</label>
+          </div>
+          <br>
+          <button onclick="enviardados()" type="submit" class="btn btn-primary fw-bold">Enviar</button>
+
+          <!--ADICIONAR FUNÇÃO DIZENDO COMENTÁRIO DIZENDO "ENVIADO" -->
+      </form>
+    </div>
+    <br><br>
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"></script>
+
+    <!-- rodapé  -->
+    <footer class="bg-dark text-light py-4">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 mb-3 mb-md-0">
+            <h5>Redes Sociais</h5>
+            <a href="https://www.facebook.com/" class="text-light me-3"><i class="fab fa-facebook fa-lg"></i></a>
+            <a href="https://x.com/?lang=pt-br" class="text-light me-3"><i class="fab fa-twitter fa-lg"></i></a>
+            <a href="https://www.instagram.com/" class="text-light me-3"><i class="fab fa-instagram fa-lg"></i></a>
+            <a href="https://br.linkedin.com/" class="text-light"><i class="fab fa-linkedin fa-lg"></i></a>
+          </div>
+          <div class="col-md-4 mb-3 mb-md-0">
+            <h5>Navegação</h5>
+            <ul class="list-unstyled">
+              <li><a href="#home" class="text-light text-decoration-none">Home</a></li>
+              <li><a href="#sobre" class="text-light text-decoration-none">Sobre Nós</a></li>
+              <li><a href="#produtos" class="text-light text-decoration-none">Produtos</a></li>
+              <li><a href="#contato" class="text-light text-decoration-none">Contato</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h5>Contato</h5>
+            <p class="mb-0"><i class="fas fa-envelope me-2"></i>ironbody@gmail.com</p>
+            <p><i class="fas fa-phone me-2"></i>(13) 5534-9683</p>
+            <p><i class="fas fa-map-marker-alt me-2"></i>Rua Praça 19 de Janeiro, Praia Grande,SP</p>
+          </div>
+        </div>
+        <hr class="border-light">
+        <div class="text-center">
+          <p class="mb-0">© 2024 ironbody. Todos os direitos reservados.</p>
+        </div>
+      </div>
+     </footer>
+
+    
+  
+  <script src="backend.js"></script>
+    
+
+ 
+
+</body>
+</html

@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Jaro:opsz@6..72&family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&family=Parkinsans:wght@300..800&display=swap');
+
+.navbar-brand{
+    font-family: Jaro;
+}
+
+#nossos_produtos{
+  font-family: Bebas Neue;
+}
+
+#textosobre{
+    font-family: Merriweather Sans;
+    font-size: 18px;
+    color: rgb(226, 223, 223);
+}
+#card_sobre{
+    background-color: #5b5e61;
+}
+#sobrenos{
+    font-family: Bebas Neue;
+    font-size: 50px;
+}
+#entrar{
+    position: absolute;
+    top: 15px;
+    right: 30px;
+}
+#contato{
+    font-family: Merriweather Sans
+}
