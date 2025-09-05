@@ -1,27 +1,33 @@
 Iron_Body
-Iron_Body é uma aplicação web frontend sofisticada, construída com HTML, CSS e JavaScript. Desenvolvida para proporcionar uma experiência de navegação envolvente que culmina em uma conclusão interativa, este projeto é perfeito para servir como base ou inspiração em trabalhos de front-end.
+
+Iron_Body é uma aplicação web frontend sofisticada, construída com HTML, CSS e JavaScript, projetada para proporcionar uma experiência de navegação envolvente e interativa. Este projeto é ideal como base ou inspiração para trabalhos de front-end.
 
 🚀 Tecnologias Utilizadas
-HTML – estrutura clara e semântica com index.html e finalizar.html.
 
-CSS – estilo visual através do style.css, com foco em design moderno e responsivo.
+HTML – Estrutura semântica clara com index.html e finalizar.html.
 
-JavaScript – scripts em backend.js que habilitam interação e lógica de navegação.
+CSS – Estilização moderna e responsiva através do style.css.
 
-Imagens – recursos visuais dentro da pasta imagens para enriquecer a UI.
+JavaScript – Scripts em backend.js para lógica de navegação e interação.
 
-Teste Online – aplicação em funcionamento disponível em prova-dev-web-final.vercel.app.
+Imagens – Recursos visuais organizados na pasta imagens para enriquecer a interface.
+
+🌐 Teste Online
+
+A aplicação está disponível para testes em: prova-dev-web-final.vercel.app
 
 📌 Recursos e Destaques
-Fluxo navegacional claro: direciona o usuário desde a página inicial até a finalização.
+
+Fluxo navegacional claro: conduz o usuário desde a página inicial até a finalização.
 
 Interface visual amigável: design limpo com elementos estilizados e responsivos.
 
-Código enxuto e didático: fácil de estudar, personalizar e expandir.
+Código didático e enxuto: fácil de estudar, personalizar e expandir.
 
-Deploy acessível: pronto para testes e demonstrações públicas.
+Deploy acessível: pronto para demonstrações públicas e testes online.
 
 👥 Contribuidores
+
 Gustavo Lemos de Oliveira
 
 Lucas Henrique Neves Sousa
